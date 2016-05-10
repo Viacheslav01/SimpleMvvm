@@ -9,8 +9,6 @@ namespace SimpleMvvm
 	public class ViewModel
 		: ObservableObject
 	{
-		private readonly SynchronizationContext _synchronizationContext = SynchronizationContext.Current;
-
 		#region Properties
 
 		#region IsBusy
@@ -24,16 +22,6 @@ namespace SimpleMvvm
 		}
 
 		#endregion
-
-		#endregion
-
-		#region OnPropertyChanged
-
-		protected override void OnPropertyChanged(string propertyName = null)
-		{
-			// It needs to be sure that notification is processed by an UI thread
-			_synchronizationContext.Post(s => base.OnPropertyChanged(s as string), propertyName);
-		}
 
 		#endregion
 
