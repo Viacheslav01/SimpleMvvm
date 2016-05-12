@@ -41,9 +41,12 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\ICommandEx.cs" />
+    <Compile Include="Common\ReadWrtierLockExt.cs" />
     <Compile Include="DisposeAction.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Guard.cs" />
+    <Compile Include="IMessageHub.cs" />
+    <Compile Include="MessageHub.cs" />
     <Compile Include="ObservableObject.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
