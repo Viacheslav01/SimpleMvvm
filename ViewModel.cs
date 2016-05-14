@@ -161,5 +161,25 @@ namespace SimpleMvvm
 		}
 
 		#endregion
+
+		private int _busyCounter;
+
+		protected IDisposable BeginBusy()
+		{
+			var value = Interlocked.Increment(ref _busyCounter);
+
+			if (value == 1)
+			{
+				IsBusy = true;
+			}
+
+			return new DisposeAction(() =>
+			{
+				if (Interlocked.Decrement(ref _busyCounter) <= 0)
+				{
+					IsBusy = false;
+				}
+			});
+		}
 	}
 }

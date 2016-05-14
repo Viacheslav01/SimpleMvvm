@@ -2,7 +2,7 @@ using System;
 
 namespace SimpleMvvm
 {
-	internal class DisposeAction
+	public class DisposeAction
 		: IDisposable
 	{
 		private Action _action;
