@@ -41,7 +41,14 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Commands\ICommandEx.cs" />
+    <Compile Include="Common\IPropertyChangedHandler.cs" />
+    <Compile Include="Common\IWeakEventListener.cs" />
+    <Compile Include="Common\IWeakPropertyChangedListener.cs" />
+    <Compile Include="Common\NotifyPropertyChangedExt.cs" />
+    <Compile Include="Common\NullPropertyChangedHandler.cs" />
+    <Compile Include="Common\PropertyChangedHandler.cs" />
     <Compile Include="Common\ReadWrtierLockExt.cs" />
+    <Compile Include="Common\WeakPropertyChangedListener.cs" />
     <Compile Include="DisposeAction.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Guard.cs" />

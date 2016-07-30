@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using SimpleMvvm.Annotations;
 
 namespace SimpleMvvm
 {
@@ -63,6 +65,30 @@ namespace SimpleMvvm
 			where TOut : class
 		{
 			return obj as TOut;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool Is<TOut>(this object obj)
+		{
+			return obj is TOut;
+		}
+
+		[Pure]
+		[LocalizationRequired(false)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool In<T>(this T obj, params T[] values)
+		{
+			var comparer = EqualityComparer<T>.Default;
+			return values.Any(v => comparer.Equals(obj, v));
+		}
+
+		[Pure]
+		[LocalizationRequired(false)]
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool NotIn<T>(this T obj, params T[] values)
+		{
+			var comparer = EqualityComparer<T>.Default;
+			return values.All(v => !comparer.Equals(obj, v));
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
