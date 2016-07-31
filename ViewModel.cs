@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Threading;
 using System.Threading.Tasks;
 using SimpleMvvm.Commands;
@@ -19,6 +20,18 @@ namespace SimpleMvvm
 		{
 			get { return _isBusy; }
 			protected set { SetValue(ref _isBusy, value, UpdateCommandsState); }
+		}
+
+		#endregion
+
+		#region BusyDescription
+
+		private string _busyDescription;
+
+		public string BusyDescription
+		{
+			get { return _busyDescription; }
+			private set { SetValue(ref _busyDescription, value); }
 		}
 
 		#endregion
@@ -166,11 +179,20 @@ namespace SimpleMvvm
 
 		protected IDisposable BeginBusy()
 		{
+			return BeginBusy(null);
+		}
+
+		protected IDisposable BeginBusy(string description)
+		{
 			var value = Interlocked.Increment(ref _busyCounter);
 
 			if (value == 1)
 			{
 				IsBusy = true;
+				if(!string.IsNullOrWhiteSpace(description))
+				{
+					BusyDescription = description;
+				}
 			}
 
 			return new DisposeAction(() =>
@@ -178,6 +200,7 @@ namespace SimpleMvvm
 				if (Interlocked.Decrement(ref _busyCounter) <= 0)
 				{
 					IsBusy = false;
+					BusyDescription = null;
 				}
 			});
 		}
