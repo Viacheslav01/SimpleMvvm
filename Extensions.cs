@@ -68,6 +68,12 @@ namespace SimpleMvvm
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static TOut Cast<TOut>(this object obj)
+		{
+			return (TOut)obj;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static bool Is<TOut>(this object obj)
 		{
 			return obj is TOut;
